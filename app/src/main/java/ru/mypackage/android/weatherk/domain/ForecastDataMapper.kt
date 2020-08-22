@@ -8,7 +8,8 @@ import java.util.*
 class ForecastDataMapper {
     fun convertFromDataModel(forecast: ForecastResult): ForecastList {
         return ForecastList(
-            forecast.city.name, forecast.city.country,
+            forecast.city.name,
+            forecast.city.country,
             convertForecastListToDomain(forecast.list)
         )
     }
@@ -20,8 +21,10 @@ class ForecastDataMapper {
     private fun convertForecastItemToDomain(forecast: Forecast): ModelForecast {
         return ModelForecast(
             convertDate(forecast.dt),
-            forecast.weather[0].description, forecast.temp.max.toInt(),
-            forecast.temp.min.toInt(), generateIconUrl(forecast.weather[0].icon)
+            forecast.weather[0].description,
+            forecast.temp.max.toInt(),
+            forecast.temp.min.toInt(),
+            generateIconUrl(forecast.weather[0].icon)
         )
     }
 
