@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
 import ru.mypackage.android.weatherk.domain.OnItemClickListener
+import ru.mypackage.android.weatherk.domain.model.ForecastModels
 import ru.mypackage.android.weatherk.domain.model.ForecastModels.*
 
-class ForecastListAdapter(
-    val weekForecast: ForecastList,
-    val itemClick: OnItemClickListener) :
+class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (ModelForecast) -> Unit) :
+//val itemClick: OnItemClickListener) :
     RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_forecast, parent, false)
         return ViewHolder(view, itemClick)
     }
 
@@ -29,7 +29,7 @@ class ForecastListAdapter(
     //    override fun getItemCount(): Int = weekForecast.dailyForecast.size
     override fun getItemCount(): Int = weekForecast.size()
 
-    class ViewHolder(view: View, val itemClick: OnItemClickListener) :
+    class ViewHolder(view: View, val itemClick: (ModelForecast) -> Unit) :
         RecyclerView.ViewHolder(view) {
         private val iconView: ImageView
         private val dateView: TextView
