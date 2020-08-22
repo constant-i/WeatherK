@@ -6,10 +6,8 @@ class ForecastModels {
         val country: String,
         val dailyForecast: List<ModelForecast>
     ) {
-
-        operator fun get(position: Int): ModelForecast = dailyForecast[position]
-
-        fun size(): Int = dailyForecast.size
+        operator fun get(position: Int) = dailyForecast[position]
+        fun size() = dailyForecast.size
     }
 
     data class ModelForecast(
