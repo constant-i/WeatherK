@@ -8,12 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
-import ru.mypackage.android.weatherk.domain.OnItemClickListener
-import ru.mypackage.android.weatherk.domain.model.ForecastModels
 import ru.mypackage.android.weatherk.domain.model.ForecastModels.*
 
 class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (ModelForecast) -> Unit) :
-//val itemClick: OnItemClickListener) :
     RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +23,6 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (ModelF
         holder.bindForecast(weekForecast[position])
     }
 
-    //    override fun getItemCount(): Int = weekForecast.dailyForecast.size
     override fun getItemCount(): Int = weekForecast.size()
 
     class ViewHolder(view: View, val itemClick: (ModelForecast) -> Unit) :

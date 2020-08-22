@@ -8,16 +8,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
-import ru.mypackage.android.weatherk.domain.OnItemClickListener
 import ru.mypackage.android.weatherk.domain.RequestForecastCommand
-import ru.mypackage.android.weatherk.domain.model.ForecastModels
 
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val URL =
-            "http://api.openweathermap.org/data/2.5/forecast?q=Moscow&units=metric&appid=29fb8d6056fe0f462c0731feda71d342"
+//        val URL = "http://api.openweathermap.org/data/2.5/forecast?q=Moscow&units=metric&appid=29fb8d6056fe0f462c0731feda71d342"
+        val ZIP_CODE = "141240" /*"94043"*/
     }
 
     private lateinit var forecastList: RecyclerView
@@ -28,14 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         forecastList = forecast_list
         forecastList.layoutManager = LinearLayoutManager(this)
-//        forecastList.adapter = ForecastListAdapter(items)
-        GetForecast(URL)
+        getForecast(ZIP_CODE)
     }
 
 
-    fun GetForecast(url: String) {
+    private fun getForecast(zipCode: String) {
         async() {
-            val result = RequestForecastCommand(/*"94043"*/"141240").execute()
+            val result = RequestForecastCommand(zipCode).execute()
             uiThread {
                 forecastList.adapter =
                     ForecastListAdapter(result) { modelForecast -> longToast(modelForecast.date) }
