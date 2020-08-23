@@ -18,13 +18,10 @@ class MainActivity : AppCompatActivity() {
         val ZIP_CODE = "141240" /*"94043"*/
     }
 
-    private lateinit var forecastList: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        forecastList = forecast_list
         forecastList.layoutManager = LinearLayoutManager(this)
         getForecast(ZIP_CODE)
     }
